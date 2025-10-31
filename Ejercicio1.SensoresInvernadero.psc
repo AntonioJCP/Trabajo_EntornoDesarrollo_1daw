@@ -1,5 +1,5 @@
 //=======================================================
-// FUNCIÓN: CalcularMediaTemp
+// FUNCIÃ“N: CalcularMediaTemp
 //=======================================================
 Funcion resultado <- CalcularMediaTemp(temperatura_total, cant_sensores Por Referencia)
 	Definir resultado Como Real;
@@ -7,8 +7,8 @@ Funcion resultado <- CalcularMediaTemp(temperatura_total, cant_sensores Por Refe
 FinFuncion
 
 //=======================================================
-// FUNCIÓN: CalcularPorcentaje
-// Devuelve 1 si la temperatura está dentro de +-2 grados
+// FUNCIÃ“N: CalcularPorcentaje
+// Devuelve 1 si la temperatura estÃ¡ dentro de +-2 grados
 //=======================================================
 Funcion resultado <- CalcularPorcentaje(temperatura_objetivo, temperatura Por Referencia)
 	Definir resultado Como Entero;
@@ -37,12 +37,12 @@ Algoritmo MedirTemperaturas
 	contador_temp <- 0;
 	contadortemperatura <- 0;
 	
-	//Menú para elegir la cantidad de sensores
+	//MenÃº para elegir la cantidad de sensores
 	Escribir "Escribe la cantidad de sensores (entre 1 y 20):";
 	Leer cant_sensores;
 	Mientras cant_sensores < 1 O cant_sensores > 20 Hacer
 		Escribir "Error. La cantidad de sensores debe estar entre 1 y 20.";
-		Escribir "Inténtalo de nuevo:";
+		Escribir "IntÃ©ntalo de nuevo:";
 		Leer cant_sensores;
 	FinMientras
 	
@@ -55,7 +55,7 @@ Algoritmo MedirTemperaturas
 		
 		Mientras temperatura[i] < -60 O temperatura[i] > 60 Hacer
 			Escribir "Error: la temperatura debe estar entre -60 y 60 grados.";
-			Escribir "Inténtalo de nuevo:";
+			Escribir "IntÃ©ntalo de nuevo:";
 			Leer temperatura[i];
 		FinMientras
 		
@@ -68,11 +68,11 @@ Algoritmo MedirTemperaturas
 	
 	Mientras temperatura_objetivo < -60 O temperatura_objetivo > 60 Hacer
 		Escribir "Error: la temperatura debe estar entre -60 y 60 grados.";
-		Escribir "Inténtalo de nuevo:";
+		Escribir "IntÃ©ntalo de nuevo:";
 		Leer temperatura_objetivo;
 	FinMientras
 	
-	//Cálculo de la media
+	//CÃ¡lculo de la media
 	media_temp <- CalcularMediaTemp(temperatura_total, cant_sensores);
 	Escribir "------------------------------------------";
 	Escribir "La temperatura media es: ", media_temp;
@@ -91,7 +91,7 @@ Algoritmo MedirTemperaturas
 			igual_media <- igual_media + 1;
 		FinSi
 		
-		//Máxima y mínima
+		//MÃ¡xima y mÃ­nima
 		Si temperatura[i] > temp_max Entonces
 			temp_max <- temperatura[i];
 			temp_max_pos <- i + 1;
@@ -102,10 +102,10 @@ Algoritmo MedirTemperaturas
 			temp_min_pos <- i + 1;
 		FinSi
 		
-		//Sensores dentro de ±2 grados de la temperatura objetivo
+		//Sensores dentro de Â±2 grados de la temperatura objetivo
 		contador_temp <- contador_temp + CalcularPorcentaje(temperatura_objetivo, temperatura[i]);
 		
-		//Sensores dentro de ±5 grados respecto a la media
+		//Sensores dentro de Â±5 grados respecto a la media
 		Si temperatura[i] >= media_temp - 5 Y temperatura[i] <= media_temp + 5 Entonces
 			contadortemperatura <- contadortemperatura + 1;
 		FinSi
@@ -113,20 +113,20 @@ Algoritmo MedirTemperaturas
 	
 	//Estado del sistema
 	Si contadortemperatura = cant_sensores Entonces
-		estado_sistem <- "El sistema está equilibrado.";
+		estado_sistem <- "El sistema estÃ¡ equilibrado.";
 	SiNo
-		estado_sistem <- "El sistema no está equilibrado.";
+		estado_sistem <- "El sistema no estÃ¡ equilibrado.";
 	FinSi
 	
 	//Resultados finales
 	Escribir "";
-	Escribir "====== Estadísticas Finales ======";
+	Escribir "====== EstadÃ­sticas Finales ======";
 	Escribir "Sensores por debajo de la media: ", por_debajo_media;
 	Escribir "Sensores iguales a la media: ", igual_media;
 	Escribir "Sensores por encima de la media: ", por_encima_media;
-	Escribir "Porcentaje de sensores dentro de ±2 grados: ", (contador_temp * 100) / cant_sensores, "%";
+	Escribir "Porcentaje de sensores dentro de Â±2 grados: ", (contador_temp * 100) / cant_sensores, "%";
 	Escribir estado_sistem;
 	Escribir "-----------------------------------";
-	Escribir "Temperatura máxima: ", temp_max, " (sensor ", temp_max_pos, ")";
-	Escribir "Temperatura mínima: ", temp_min, " (sensor ", temp_min_pos, ")";
+	Escribir "Temperatura mÃ¡xima: ", temp_max, " (sensor ", temp_max_pos, ")";
+	Escribir "Temperatura mÃ­nima: ", temp_min, " (sensor ", temp_min_pos, ")";
 FinAlgoritmo
